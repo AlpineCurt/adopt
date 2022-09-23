@@ -1,0 +1,46 @@
+{%  extends 'base.html' %}
+
+{% block title %}{{form.name.data}}{% endblock %}
+
+{% block content %}
+
+<div class="text-center m-4">
+    <h4 class="text-center">{{pet.name}}</h4>
+    <img src="{{pet.photo_url}}" alt="">
+    <p>{{pet.species}}</p>
+    <p>{{pet.age}} years old</p>
+    <p>{{pet.notes}}</p>
+    {% if pet.available %}
+    <h6 class="text-center"><strong>Available!</strong></h6>
+    {% endif %}
+</div>
+
+<br><br>
+
+
+<div class="container">
+    <h6>Edit pet info:</h6>
+    <form action="/{{pet.id}}" method="POST">
+        {{form.csrf_token}}
+        <input type="hidden" id="name" name="name" value="{{form.name.data}}">
+        <input type="hidden" id="species" name="species" value="{{form.species.data}}">
+        <div class="row gy-10">
+            <div class="col-sm-3">{{form.photo_url.label}}</div>
+            <div class="col-sm-3">{{form.photo_url(size=50)}}</div>
+        </div>
+        <div class="row gy-10">
+            <div class="col-sm-3">{{form.notes.label}}</div>
+            <div class="col-sm-3">{{form.notes(rows=5, cols=50)}}</div>
+        </div>
+        <div class="row gy-10">
+            <div class="col-sm-3">{{form.available.label}}</div>
+            <div class="col-sm-3">{{form.available}}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1">
+                <button>Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

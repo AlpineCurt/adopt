@@ -4,11 +4,11 @@
 
 {% block content %}
 
-<h1 class="text-center">Bring Home Your Best Friend Today!</h1>
+<h1 class="text-center">Bring Your New Best Friend Home Today!</h1>
 {% for pet in pets %}
 <div class="text-center m-4">
-    <h4 class="text-center">{{pet.name}}</h4>
-    <img src="{{pet.photo_url}}" alt="">
+    <a href="/{{pet.id}}"><h4 class="text-center">{{pet.name}}</h4></a>
+    <a href="/{{pet.id}}"><img src="{{pet.photo_url}}" alt=""></a>
     {% if pet.available %}
     <h6 class="text-center"><strong>Available!</strong></h6>
     {% endif %}
